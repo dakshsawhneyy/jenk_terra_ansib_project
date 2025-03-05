@@ -1,3 +1,14 @@
+# Installing AWS from hashicorp
+terraform {
+    required_providers {
+        aws = {
+            source = "hashicorp/aws"
+            version = "~> 5.88.0"
+        }
+    }
+    required_version = ">=1.2.0"
+}
+
 # Fetching latest AMI ID from AWS because if we hardcode, that image may become outdated
 data "aws_ami" "aws_linux" {
     most_recent = true  # Get the latest image available AMI
@@ -18,10 +29,19 @@ data "aws_ami" "aws_linux" {
 
 # Creation of AWS instance
 resource "aws_instance" "my_instance" {
+    # We can even hardcode value from aws but this is future proof
     ami = data.aws_ami.aws_linux.id    # fetching ami from above filter block
     instance_type = "t2.micro"
     key_name = "Ansible-key"
     tags = {
         Name = "${var.name}-server"
+    }
+}
+
+# Creation of S3 Bucket
+resource "aws_s3_bucket" "my_bucket" {
+    bucket = "devops_project_bucket-23"
+    tags = {
+        Name = "devops_project_bucket-23"
     }
 }
