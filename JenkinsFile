@@ -1,0 +1,22 @@
+#!/bin/bash	
+
+# using xe- :  x is debugging mode showing what is happening and e throws error if anything goes wrong
+set -xe
+
+# Moves into the folder where your Terraform code is stored
+cd /terraform
+
+terraform init	# Installing all dependencies for terraform
+terraform plan	# gives a detail view of what it is doing
+# $TERRAFORM_ACTION is a variable that decides which Terraform command to run.
+terraform $TERRAFORM_ACTION -auto-approve	# -auto-approve skips manual confirmation (otherwise, Terraform asks for "yes" input)
+
+# Move to Ansible Directory
+
+# Check if terraform succeeds, if yes then only proceed to Ansible
+if [ "$TERRAFORM_ACTION" = "destroy" ]; then
+	exit 0
+else
+	cd ../Ansible
+	ansible-playbook -i /opt/ansible/inventory/aws_ec2.yaml apache.yaml 	# run playbook of Ansible
+fi
