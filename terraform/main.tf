@@ -39,9 +39,4 @@ resource "aws_instance" "my_instance" {
 }
 
 # Creation of S3 Bucket
-resource "aws_s3_bucket" "my_bucket" {
-    bucket = "devops_project_bucket-23"
-    tags = {
-        Name = "devops_project_bucket-23"
-    }
-}
+# Create S3 bucket manually in AWS
