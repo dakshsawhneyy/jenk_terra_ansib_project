@@ -32,7 +32,7 @@
             state: latest
         # now we need to install terraform
         # terraform integrates with jenkins for automation
-       - name: Installing Terraform
+      - name: Installing Terraform
          unarchive:
             src: https://releases.hashicorp.com/terraform/0.9.1/terraform_0.9.1_linux_amd64.zip
             dest: /usr/bin
