@@ -1,3 +1,3 @@
 variable "name" {
-    default = ""    # Taking input from user -- name of instance
+    default = "apache"    # Taking input from user -- name of instance
 }
