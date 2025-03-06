@@ -1,0 +1,39 @@
+-
+    name: Installing Apache Server
+    hosts: aws_ec2
+    become: yes
+    # connecting ec2 instance using SSH key
+    remote_user: ec2-user    # default for connecting aws EC2 instance
+    vars:
+        ansible_ssh_private_key_file: "/home/ubuntu/jenk_terra_ansib_project/ansible"
+    tasks:
+        # Installing Apache and PHP
+      - name: Install Apache and PHP
+        package:
+            name:
+               - httpd    # apache for amazon linux
+               - php
+            state: present
+        # Starting Apache Service
+      - name: Start Apache Service
+        service:
+            name: httpd
+            state: started
+            enabled: yes
+        # Download index.php file from my github repo
+      - name: Download index.php from my github repo to apache 
+        get_url:
+            # The "raw" content url is used to directly fetch the file from GitHub instead of cloning the whole repository.
+            url: "https://raw.githubusercontent.com/dakshsawhneyy/jenk_terra_ansib_project/main/ansible/index.php"
+            dest: "/var/www/html/index.php"
+      - name: need additional packages (wget) for installing terraform
+        package: 
+            name: wget
+            state: latest
+        # now we need to install terraform
+        # terraform integrates with jenkins for automation
+       - name: Installing Terraform
+         unarchive:
+            src: https://releases.hashicorp.com/terraform/0.9.1/terraform_0.9.1_linux_amd64.zip
+            dest: /usr/bin
+            remote_src: yes
