@@ -1,0 +1,10 @@
+plugin: amazon.aws.aws_ec2
+regions:
+  - ap-south-1  # Change this to your AWS region
+filters:
+  instance-state-name: running  # Fetch only running instances
+  tag:Environment: "dev"
+
+# Group instances by Name
+keyed_groups:
+  - key: tags.Name  # Group instances based on AWS tags
