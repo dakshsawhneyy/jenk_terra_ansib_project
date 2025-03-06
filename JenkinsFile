@@ -7,7 +7,6 @@ set -xe
 cd /terraform
 
 terraform init	# Installing all dependencies for terraform
-terraform plan	# gives a detail view of what it is doing
 # $TERRAFORM_ACTION is a variable that decides which Terraform command to run.
 terraform $TERRAFORM_ACTION -auto-approve	# -auto-approve skips manual confirmation (otherwise, Terraform asks for "yes" input)
 
