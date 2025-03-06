@@ -25,10 +25,8 @@
         get_url:
             url: "https://raw.githubusercontent.com/dakshsawhneyy/jenk_terra_ansib_project/main/ansible/index.html"
             dest: "/var/www/html/index.html"
-            # The "raw" content url is used to directly fetch the file from GitHub instead of cloning the whole repository.
             url: "https://raw.githubusercontent.com/dakshsawhneyy/jenk_terra_ansib_project/main/ansible/index.html"
             dest: "/var/www/html/index.html"
->>>>>>> 82f4c7d (.)
       - name: need additional packages (wget) for installing terraform
         package: 
             name: wget
