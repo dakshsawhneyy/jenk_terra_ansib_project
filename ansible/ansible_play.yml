@@ -23,11 +23,8 @@
         # Download index.php file from my github repo
       - name: Download index.php from my github repo to apache 
         get_url:
-<<<<<<< HEAD
             url: "https://raw.githubusercontent.com/dakshsawhneyy/jenk_terra_ansib_project/main/ansible/index.html"
             dest: "/var/www/html/index.html"
-
-=======
             # The "raw" content url is used to directly fetch the file from GitHub instead of cloning the whole repository.
             url: "https://raw.githubusercontent.com/dakshsawhneyy/jenk_terra_ansib_project/main/ansible/index.html"
             dest: "/var/www/html/index.html"
