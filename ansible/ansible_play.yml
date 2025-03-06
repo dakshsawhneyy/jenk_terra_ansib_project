@@ -24,8 +24,8 @@
       - name: Download index.php from my github repo to apache 
         get_url:
             # The "raw" content url is used to directly fetch the file from GitHub instead of cloning the whole repository.
-            url: "https://raw.githubusercontent.com/ankush-me/ansible-playbook/main/index.php"
-            dest: "/var/www/html/index.php"
+            url: "https://raw.githubusercontent.com/dakshsawhneyy/jenk_terra_ansib_project/main/ansible/index.html"
+            dest: "/var/www/html/index.html"
       - name: need additional packages (wget) for installing terraform
         package: 
             name: wget
